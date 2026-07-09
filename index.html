@@ -107,21 +107,6 @@
     transform: translateY(115%);
   }
 
-  /* light sweep that glides across the wordmark once it lands */
-  .shine {
-    position: absolute;
-    top: 0;
-    left: -35%;
-    width: 30%;
-    height: 100%;
-    background: linear-gradient(115deg,
-      rgba(247, 244, 238, 0) 0%,
-      rgba(255, 255, 255, 0.65) 50%,
-      rgba(247, 244, 238, 0) 100%);
-    transform: skewX(-15deg) translateX(0);
-    mix-blend-mode: overlay;
-    pointer-events: none;
-  }
 
   .rule {
     height: 3px;
@@ -188,7 +173,6 @@
       <div class="word"><span>A</span></div>
       <div class="word"><span>D</span></div>
       <div class="word"><span>V</span></div>
-      <div class="shine"></div>
     </div>
   </div>
   <div class="rule"><span class="rule-dot"></span></div>
@@ -212,7 +196,6 @@
     opacity: 0, y: '115%', scale: 0.82, rotateX: -55,
     filter: 'blur(14px)', transformOrigin: '50% 100%'
   });
-  gsap.set('.shine', { xPercent: 0 });
   gsap.set('.rule-dot', { opacity: 0, scale: 0 });
 
   if (reduceMotion) {
@@ -234,7 +217,6 @@
         duration: 0.9, stagger: 0.1, ease: 'power4.out'
       }, 0.75)
       .to('.rule', { width: 460, duration: 0.6, ease: 'power2.inOut' }, 1.45)
-      .to('.shine', { xPercent: 420, duration: 0.9, ease: 'power2.inOut' }, 1.45)
       .to('.rule-dot', { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(3)' }, 1.95)
       .to('.contact', { opacity: 1, duration: 0.6 }, 1.6)
       .to('.address', { opacity: 0.7, duration: 0.6 }, 1.8);
