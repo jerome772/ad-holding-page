@@ -140,16 +140,6 @@
     transform: scale(0);
   }
 
-  .status {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--sage);
-    opacity: 0;
-    text-align: center;
-  }
-
   .contact {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 14px;
@@ -202,7 +192,6 @@
     </div>
   </div>
   <div class="rule"><span class="rule-dot"></span></div>
-  <div class="status">Something senior, built quietly</div>
   <div class="contact"><a href="mailto:hello@advhq.com.au">hello@advhq.com.au</a></div>
   <div class="address">206 / 350 George St, Sydney NSW, 2000</div>
 </div>
@@ -227,7 +216,7 @@
   gsap.set('.rule-dot', { opacity: 0, scale: 0 });
 
   if (reduceMotion) {
-    gsap.set(['.mark-wrap', '.word span', '.status', '.contact', '.address', '.rule-dot'],
+    gsap.set(['.mark-wrap', '.word span', '.contact', '.address', '.rule-dot'],
       { opacity: 1, filter: 'blur(0px)', x: 0, y: 0, scale: 1, rotateX: 0, rotateY: 0 });
     gsap.set('.rule', { width: 460 });
     gsap.set('.glow', { opacity: 0.5 });
@@ -247,9 +236,8 @@
       .to('.rule', { width: 460, duration: 0.6, ease: 'power2.inOut' }, 1.45)
       .to('.shine', { xPercent: 420, duration: 0.9, ease: 'power2.inOut' }, 1.45)
       .to('.rule-dot', { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(3)' }, 1.95)
-      .to('.status', { opacity: 1, duration: 0.6 }, 1.6)
-      .to('.contact', { opacity: 1, duration: 0.6 }, 1.8)
-      .to('.address', { opacity: 0.7, duration: 0.6 }, 2.0);
+      .to('.contact', { opacity: 1, duration: 0.6 }, 1.6)
+      .to('.address', { opacity: 0.7, duration: 0.6 }, 1.8);
   }
 
   /* ambient glow drifts toward the cursor; mark tilts in parallax with it */
