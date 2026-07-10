@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ADV</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <style>
   :root {
@@ -28,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Archivo', sans-serif;
   }
 
   /* soft ambient light that drifts toward the cursor, drawn behind everything */
@@ -87,7 +87,7 @@
   .wordmark {
     position: relative;
     display: flex;
-    gap: 30px;
+    gap: 4px;
     overflow: hidden;
     perspective: 700px;
   }
@@ -97,9 +97,9 @@
     overflow: hidden;
   }
   .word span {
-    font-family: 'Zilla Slab', serif;
-    font-weight: 700;
-    font-size: 140px;
+    font-family: 'Archivo Black', sans-serif;
+    font-weight: 400;
+    font-size: 132px;
     color: var(--navy);
     letter-spacing: -0.01em;
     line-height: 1;
@@ -126,26 +126,28 @@
   }
 
   .contact {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
     color: var(--charcoal);
     opacity: 0;
     text-align: center;
-    letter-spacing: 0.03em;
+    letter-spacing: -0.005em;
   }
   .contact a { color: var(--ochre); text-decoration: none; }
 
   .address {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
     color: var(--charcoal);
     opacity: 0;
     text-align: center;
-    letter-spacing: 0.03em;
+    letter-spacing: -0.005em;
   }
 
   @media (max-width: 640px) {
-    .word span { font-size: 76px; }
+    .word span { font-size: 72px; }
     .mark-wrap { width: 64px; height: 54px; }
     .mark path { stroke-width: 9; }
   }
@@ -163,10 +165,10 @@
   <div class="mark-row">
     <div class="mark-wrap" id="markWrap">
       <svg class="mark" viewBox="0 0 104 88" xmlns="http://www.w3.org/2000/svg">
-        <path class="light echo" id="e1" d="M 5.5 44 L 27.5 22 L 49.5 44" />
-        <path class="accent echo" id="e2" d="M 28.5 44 L 50.5 22 L 72.5 44" />
-        <path class="light" id="p1" d="M 5.5 44 L 27.5 22 L 49.5 44" />
-        <path class="accent" id="p2" d="M 28.5 44 L 50.5 22 L 72.5 44" />
+        <path class="light echo" id="e1" d="M 16.5 11 L 38.5 33 L 16.5 55" />
+        <path class="accent echo" id="e2" d="M 32.5 11 L 54.5 33 L 32.5 55" />
+        <path class="light" id="p1" d="M 16.5 11 L 38.5 33 L 16.5 55" />
+        <path class="accent" id="p2" d="M 32.5 11 L 54.5 33 L 32.5 55" />
       </svg>
     </div>
     <div class="wordmark">
@@ -193,8 +195,7 @@
 
   gsap.set('.mark-wrap', { rotateY: -35, rotateX: 10, scale: 0.85, opacity: 0, filter: 'blur(8px)' });
   gsap.set('.word span', {
-    opacity: 0, y: '115%', scale: 0.82, rotateX: -55,
-    filter: 'blur(14px)', transformOrigin: '50% 100%'
+    opacity: 0, y: '-140%', scale: 0.7, transformOrigin: '50% 50%'
   });
   gsap.set('.rule-dot', { opacity: 0, scale: 0 });
 
@@ -213,13 +214,13 @@
       .to('#p2', { strokeDashoffset: 0, duration: 0.8, ease: 'power3.inOut' }, 0.45)
       .to(['#e1', '#e2'], { strokeDashoffset: 0, duration: 1.2, ease: 'power2.inOut' }, 0.3)
       .to('.word span', {
-        opacity: 1, y: '0%', scale: 1, rotateX: 0, filter: 'blur(0px)',
-        duration: 0.9, stagger: 0.1, ease: 'power4.out'
-      }, 0.75)
-      .to('.rule', { width: 460, duration: 0.6, ease: 'power2.inOut' }, 1.45)
-      .to('.rule-dot', { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(3)' }, 1.95)
-      .to('.contact', { opacity: 1, duration: 0.6 }, 1.6)
-      .to('.address', { opacity: 0.7, duration: 0.6 }, 1.8);
+        opacity: 1, y: '0%', scale: 1,
+        duration: 1, stagger: 0.13, ease: 'elastic.out(1, 0.55)'
+      }, 0.7)
+      .to('.rule', { width: 460, duration: 0.6, ease: 'power2.inOut' }, 1.8)
+      .to('.rule-dot', { opacity: 1, scale: 1, duration: 0.45, ease: 'back.out(3)' }, 2.3)
+      .to('.contact', { opacity: 1, duration: 0.6 }, 1.95)
+      .to('.address', { opacity: 0.7, duration: 0.6 }, 2.15);
   }
 
   /* ambient glow drifts toward the cursor; mark tilts in parallax with it */
