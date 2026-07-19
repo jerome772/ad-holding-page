@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLenis } from "lenis/react";
+import Logo from "./Logo";
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -13,6 +15,7 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
+  const lenis = useLenis();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
@@ -83,9 +86,13 @@ export default function Header() {
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       e.preventDefault();
       setMenuOpen(false);
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      if (lenis) {
+        lenis.scrollTo(href, { offset: -72 });
+      } else {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+      }
     },
-    []
+    [lenis]
   );
 
   return (
@@ -102,9 +109,9 @@ export default function Header() {
           href="#hero"
           tabIndex={menuOpen ? -1 : undefined}
           onClick={(e) => handleLinkClick(e, "#hero")}
-          className="font-[var(--font-manrope)] font-extrabold text-[1.3rem] text-[var(--ink)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
+          className="text-[var(--ink)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
         >
-          ADV
+          <Logo className="h-6 w-auto" />
         </a>
 
         <nav

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope, Inter, Barlow } from "next/font/google";
 import Script from "next/script";
+import { Lenis } from "lenis/react";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const GA_MEASUREMENT_ID = "G-5Q0PLQYSCL";
@@ -39,7 +41,7 @@ const barlow = Barlow({
   weight: ["900"],
 });
 
-const TITLE = "ADV Consulting | SAP BTP & Enterprise AI — Sydney";
+const TITLE = "ADV Consulting | SAP BTP & Enterprise AI - Sydney";
 const DESCRIPTION =
   "Human-centred. AI-native. Lean and nimble. Built for where business is heading.";
 
@@ -91,7 +93,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
+        <Lenis root options={{ lerp: 0.1, wheelMultiplier: 1 }}>
+          {children}
+        </Lenis>
       </body>
     </html>
   );

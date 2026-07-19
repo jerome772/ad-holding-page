@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 const HUBSPOT_TICKETS_URL = "https://api.hubapi.com/crm/v3/objects/tickets";
 
-// Support Pipeline / "New" stage — see HubSpot ticket pipeline settings.
+// Support Pipeline / "New" stage - see HubSpot ticket pipeline settings.
 const TICKET_PIPELINE = "0";
 const TICKET_STAGE_NEW = "1";
 
 // Routes new tickets to Jerome's HubSpot owner ID so HubSpot's own
-// "ticket assigned to me" notification fires — no separate email
+// "ticket assigned to me" notification fires - no separate email
 // service needed.
 const TICKET_OWNER_ID = "95094117";
 
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
   const content = [
     `Name: ${name}`,
     `Email: ${email}`,
-    `Company: ${company || "—"}`,
+    `Company: ${company || "-"}`,
     "",
     message,
   ].join("\n");

@@ -2,7 +2,7 @@ const pillars = [
   {
     index: "01",
     title: "Applications",
-    body: "Design and build applications and the cloud services behind them — React, iOS, Flutter, Fiori — built on SAP BTP. Modern experiences that don't compromise on enterprise foundations.",
+    body: "Design and build applications and the cloud services behind them - React, iOS, Flutter, Fiori - built on SAP BTP. Modern experiences that don't compromise on enterprise foundations.",
   },
   {
     index: "02",
@@ -12,7 +12,7 @@ const pillars = [
   {
     index: "03",
     title: "Agentic Solutions",
-    body: "From integrating AI tools and automating workflows through to complex, business value-driven agentic systems — multi-agent solutions that augment real decisions, not just automate simple tasks.",
+    body: "From integrating AI tools and automating workflows through to complex, business value-driven agentic systems - multi-agent solutions that augment real decisions, not just automate simple tasks.",
   },
 ];
 

@@ -2,7 +2,7 @@ const STAGES = [
   {
     number: "01",
     name: "Diagnose",
-    body: "Ground the work before building it. Business case, requirements, technical constraints — captured as a living document every decision refers back to.",
+    body: "Ground the work before building it. Business case, requirements, technical constraints - captured as a living document every decision refers back to.",
   },
   {
     number: "02",
@@ -12,7 +12,7 @@ const STAGES = [
   {
     number: "03",
     name: "Scale",
-    body: "Embed, expand, and compound. The goal is value that grows — not a handover document and a goodbye.",
+    body: "Embed, expand, and compound. The goal is value that grows - not a handover document and a goodbye.",
   },
 ];
 

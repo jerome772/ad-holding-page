@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | ADV Consulting",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 const sections = [
   {
     heading: "What we collect",
-    body: "Contact form submissions — your name, email, company, and message. And anonymised browsing data via Google Analytics 4, so we can see how the site's being used.",
+    body: "Contact form submissions - your name, email, company, and message. And anonymised browsing data via Google Analytics 4, so we can see how the site's being used.",
   },
   {
     heading: "What we do with it",
@@ -22,7 +23,7 @@ const sections = [
   },
   {
     heading: "Cookies",
-    body: "Google Analytics sets minimal session cookies. No advertising or retargeting cookies — we're not tracking you around the internet.",
+    body: "Google Analytics sets minimal session cookies. No advertising or retargeting cookies - we're not tracking you around the internet.",
   },
   {
     heading: "Your rights",
@@ -46,12 +47,20 @@ export default function PrivacyPage() {
   return (
     <main className="min-h-screen px-[8vw] py-[10vh]">
       <div className="max-w-[640px] mx-auto">
-        <Link
-          href="/"
-          className="inline-flex items-center h-11 -mx-1 px-1 font-[var(--font-manrope)] font-extrabold text-[1.4rem] text-[var(--ink)] no-underline mb-16 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
-        >
-          ADV
-        </Link>
+        <div className="flex items-center justify-between mb-16">
+          <Link
+            href="/"
+            className="inline-flex items-center h-11 -mx-1 px-1 text-[var(--ink)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
+          >
+            <Logo className="h-6 w-auto" />
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center h-11 px-1 text-[0.9rem] font-medium text-[var(--ink)] no-underline hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
+          >
+            &larr; Back to home
+          </Link>
+        </div>
 
         <h1 className="font-[var(--font-manrope)] font-extrabold text-[clamp(2rem,4.4vw,3rem)] leading-[1.1] mb-12">
           Privacy Policy

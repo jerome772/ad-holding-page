@@ -46,13 +46,13 @@ export default function CTA() {
       </p>
       <h2 className="font-[var(--font-manrope)] font-extrabold text-[clamp(1.8rem,3.6vw,2.6rem)] max-w-[22ch] mx-auto mb-10 leading-[1.1]">
         If you&apos;ve got tough problems, a passion for innovation and
-        you&apos;re looking for a genuine partner in solving them — let&apos;s
+        you&apos;re looking for a genuine partner in solving them - let&apos;s
         talk.
       </h2>
 
       {status === "sent" ? (
         <p className="text-[1.05rem] font-semibold">
-          Thanks — we&apos;ll be in touch shortly.
+          Thanks - we&apos;ll be in touch shortly.
         </p>
       ) : (
         <form
@@ -124,7 +124,7 @@ export default function CTA() {
           </button>
           {status === "error" && (
             <p className="text-sm text-red-700">
-              Something went wrong — email us directly at{" "}
+              Something went wrong - email us directly at{" "}
               <a href="mailto:hello@advhq.com.au" className="underline">
                 hello@advhq.com.au
               </a>
