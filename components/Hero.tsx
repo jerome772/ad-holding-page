@@ -158,10 +158,6 @@ export default function Hero() {
           Let&apos;s talk
         </a>
       </div>
-
-      <div className="absolute bottom-[6vh] left-1/2 -translate-x-1/2 text-[0.72rem] tracking-[0.18em] uppercase text-[var(--ink-soft)] opacity-70">
-        Scroll
-      </div>
     </section>
   );
 }
