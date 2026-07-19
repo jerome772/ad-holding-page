@@ -9,18 +9,31 @@ const GA_MEASUREMENT_ID = "G-5Q0PLQYSCL";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "ADV Consulting Pty Ltd",
-  url: "https://www.advhq.com.au",
-  email: "hello@advhq.com.au",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Sydney",
-    addressRegion: "NSW",
-    addressCountry: "AU",
-  },
-  description:
-    "SAP BTP and enterprise AI consulting firm serving mid-market and enterprise clients across Australia and New Zealand.",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "ADV Consulting Pty Ltd",
+      url: "https://www.advhq.com.au",
+      logo: "https://www.advhq.com.au/icon.svg",
+      sameAs: [],
+      description:
+        "Senior-led enterprise consulting: Applications, Integration & Data, and Agentic AI. Data-first delivery for mid-market and enterprise clients across ANZ.",
+    },
+    {
+      "@type": "ProfessionalService",
+      name: "ADV Consulting Pty Ltd",
+      url: "https://www.advhq.com.au",
+      email: "hello@advhq.com.au",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sydney",
+        addressRegion: "NSW",
+        addressCountry: "AU",
+      },
+      description:
+        "Senior-led enterprise consulting: Applications, Integration & Data, and Agentic AI. Data-first delivery for mid-market and enterprise clients across ANZ.",
+    },
+  ],
 };
 
 const manrope = Manrope({
@@ -41,9 +54,9 @@ const barlow = Barlow({
   weight: ["900"],
 });
 
-const TITLE = "ADV Consulting | SAP BTP & Enterprise AI - Sydney";
+const TITLE = "ADV | Call Advantage";
 const DESCRIPTION =
-  "Human-centred. AI-native. Lean and nimble. Built for where business is heading.";
+  "Senior-led enterprise consulting: Applications, Integration & Data, and Agentic AI. Data-first delivery for mid-market and enterprise clients across ANZ.";
 
 export const metadata: Metadata = {
   title: TITLE,

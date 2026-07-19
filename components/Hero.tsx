@@ -141,13 +141,15 @@ export default function Hero() {
 
       <div className="hero-copy">
         <h1 className="font-[var(--font-manrope)] font-extrabold text-[clamp(2.2rem,5.4vw,4.4rem)] leading-[1.05] max-w-[16ch] mx-auto mb-4">
-          Built for where business is heading.
+          Call Advantage.
         </h1>
-        <p className="text-[clamp(1.05rem,1.6vw,1.3rem)] text-[var(--ink-soft)] max-w-[42ch] mx-auto mb-2">
-          Partnership, not transaction. Human-centred. AI-native.
+        <p className="font-[var(--font-manrope)] font-bold text-[clamp(1rem,1.6vw,1.25rem)] mb-3">
+          Earned, not given.
         </p>
-        <p className="font-[var(--font-manrope)] font-bold text-[clamp(1rem,1.6vw,1.25rem)] my-2 mb-8">
-          Our method. Your advantage.
+        <p className="text-[clamp(1.05rem,1.6vw,1.3rem)] text-[var(--ink-soft)] max-w-[46ch] mx-auto mb-8">
+          Most AI initiatives fail before they start, because the data
+          underneath them isn&apos;t ready. We fix that first, then build AI,
+          applications, and everything in between.
         </p>
         <a
           href="#contact"

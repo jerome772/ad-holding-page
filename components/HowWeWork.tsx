@@ -1,7 +1,7 @@
 const STAGES = [
   {
     number: "01",
-    name: "Diagnose",
+    name: "Ground",
     body: "Ground the work before building it. Business case, requirements, technical constraints - captured as a living document every decision refers back to.",
   },
   {
@@ -23,9 +23,19 @@ export default function HowWeWork() {
       className="min-h-screen flex flex-col justify-center px-[8vw] py-[10vh]"
       style={{ background: "#201f1f" }}
     >
-      <p className="text-[0.78rem] font-semibold tracking-[0.16em] uppercase text-[#e8e0d0] opacity-60 mb-14 text-center">
-        How we work
-      </p>
+      <div className="text-center max-w-[60ch] mx-auto mb-14">
+        <p className="text-[0.78rem] font-semibold tracking-[0.16em] uppercase text-[#e8e0d0] opacity-60 mb-5">
+          How we work
+        </p>
+        <h2 className="font-[var(--font-barlow)] font-black text-[clamp(1.9rem,3.4vw,2.8rem)] leading-[1.05] text-[#e8e0d0] mb-6">
+          Ground. Create. Scale.
+        </h2>
+        <p className="text-[1.05rem] text-[#e8e0d0] opacity-60 max-w-[52ch] mx-auto">
+          Senior people, embedded in your team, not managing from a distance.
+          Hands-on from strategy through production, the way advantage has
+          always worked: earned twice, not given once.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10 max-w-[1100px] mx-auto w-full">
         {STAGES.map((stage) => (

@@ -2,17 +2,17 @@ const pillars = [
   {
     index: "01",
     title: "Applications",
-    body: "Design and build applications and the cloud services behind them - React, iOS, Flutter, Fiori - built on SAP BTP. Modern experiences that don't compromise on enterprise foundations.",
+    body: "Full builds and modernisation, from concept to production. React, iOS, Flutter, on SAP BTP or standalone. Wherever you're starting from, legacy replacement, greenfield, or somewhere in between.",
   },
   {
     index: "02",
-    title: "Semantic Layers",
-    body: "Integration that pulls your systems together, with normalised data layers built to handle what you need today and what AI will demand tomorrow.",
+    title: "Integration & Data",
+    body: "Your systems, pooled and normalised into a secure layer with real semantic structure, usable for reporting today, and for AI when you're ready for it.",
   },
   {
     index: "03",
-    title: "Agentic Solutions",
-    body: "From integrating AI tools and automating workflows through to complex, business value-driven agentic systems - multi-agent solutions that augment real decisions, not just automate simple tasks.",
+    title: "Agentic",
+    body: "Multi-agent systems that augment real decisions, not automate simple tasks. Business-value-driven, not demo-driven.",
   },
 ];
 
@@ -44,6 +44,10 @@ export default function WhatWeDo() {
           </div>
         ))}
       </div>
+
+      <p className="font-[var(--font-manrope)] font-bold text-[1.05rem] text-center mt-14">
+        We build with AI. And we build AI.
+      </p>
     </section>
   );
 }
