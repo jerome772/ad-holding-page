@@ -25,6 +25,13 @@ export default function ScrollSnap() {
           el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
         return snap.add(Math.max(0, top));
       });
+
+      // The last section's content (e.g. the footer inside Contact) can run
+      // taller than one viewport, leaving scrollable space below its snap
+      // point that no snap point covers. Without this, proximity snapping
+      // yanks the page back up whenever you try to scroll into that space.
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      removeFns.push(snap.add(maxScroll));
     }
 
     computeSnapPoints();
