@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Inter, Barlow } from "next/font/google";
+import { Manrope } from "next/font/google";
 import Script from "next/script";
 import { Lenis } from "lenis/react";
 import "lenis/dist/lenis.css";
@@ -39,19 +39,7 @@ const jsonLd = {
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
-const barlow = Barlow({
-  variable: "--font-barlow",
-  subsets: ["latin"],
-  weight: ["900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const TITLE = "ADV | Call Advantage";
@@ -87,9 +75,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${manrope.variable} ${inter.variable} ${barlow.variable} antialiased`}
-      >
+      <body className={`${manrope.variable} antialiased`}>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"

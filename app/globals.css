@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #141415;
-  --sand: #E7DFCF;
-  --sand-deep: #DCD2BC;
-  --paper: #F3EEE3;
-  --ink-soft: #55503f;
+  --navy: #010125;
+  --terracotta: #d0502d;
+  --white: #ffffff;
+  --off-white: #f7f6f2;
+  --hairline: #e9e7e0;
+  --ink-on-white: rgba(1, 1, 37, 0.7);
+  --ink-on-navy: rgba(255, 255, 255, 0.78);
 }
 
 html {
@@ -14,8 +16,8 @@ html {
 }
 
 body {
-  background: var(--sand);
-  color: var(--ink);
+  background: var(--white);
+  color: var(--navy);
   font-family: var(--font-manrope), 'Helvetica Neue', Arial, sans-serif;
   overflow-x: hidden;
 }

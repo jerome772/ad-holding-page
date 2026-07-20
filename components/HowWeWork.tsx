@@ -20,42 +20,43 @@ export default function HowWeWork() {
   return (
     <section
       id="how"
-      className="min-h-screen flex flex-col justify-center px-[8vw] py-[10vh]"
-      style={{ background: "#201f1f" }}
+      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px]"
+      style={{ background: "var(--off-white)" }}
     >
-      <div className="text-center max-w-[60ch] mx-auto mb-14">
-        <p className="text-[0.78rem] font-semibold tracking-[0.16em] uppercase text-[#e8e0d0] opacity-60 mb-5">
-          How we work
-        </p>
-        <h2 className="font-[var(--font-barlow)] font-black text-[clamp(1.9rem,3.4vw,2.8rem)] leading-[1.05] text-[#e8e0d0] mb-6">
-          Ground. Create. Scale.
-        </h2>
-        <p className="text-[1.05rem] text-[#e8e0d0] opacity-60 max-w-[52ch] mx-auto">
-          Senior people, embedded in your team, not managing from a distance.
-          Hands-on from strategy to scale.
-        </p>
-      </div>
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="lg:w-[320px] lg:flex-shrink-0">
+          <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
+            How we work
+          </p>
+          <h2 className="font-extrabold text-[24px] sm:text-[28px] lg:text-[34px] leading-[1.15] text-[var(--navy)] mb-4">
+            Ground. Create. Scale.
+          </h2>
+          <p className="text-[14.5px] sm:text-[15px] leading-[1.6] text-[var(--ink-on-white)]">
+            Senior people, embedded in your team, not managing from a
+            distance. Hands-on from strategy to scale.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-10 max-w-[1100px] mx-auto w-full">
-        {STAGES.map((stage) => (
-          <div key={stage.number} className="relative">
-            <span
-              aria-hidden="true"
-              className="absolute -top-2 left-0 font-[var(--font-barlow)] font-black text-[80px] leading-none text-[#e8e0d0] opacity-[0.08] select-none pointer-events-none"
+        <div className="flex-1">
+          {STAGES.map((stage) => (
+            <div
+              key={stage.number}
+              className="flex gap-6 py-8 border-t border-[var(--hairline)]"
             >
-              {stage.number}
-            </span>
-            <div className="relative pt-16">
-              <div className="w-7 h-0.5 bg-[#e8e0d0] opacity-15 mb-6" />
-              <h3 className="font-[var(--font-barlow)] font-black text-[28px] text-[#e8e0d0] mb-4">
-                {stage.name}
-              </h3>
-              <p className="font-[var(--font-inter)] text-[15px] leading-[1.6] text-[#e8e0d0] opacity-60">
-                {stage.body}
-              </p>
+              <div className="w-8 flex-shrink-0 text-[13px] font-extrabold text-[var(--terracotta)] pt-1">
+                {stage.number}
+              </div>
+              <div className="flex-1">
+                <h3 className="text-[20px] font-bold text-[var(--navy)] mb-2">
+                  {stage.name}
+                </h3>
+                <p className="text-[14.5px] leading-[1.6] text-[var(--ink-on-white)]">
+                  {stage.body}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

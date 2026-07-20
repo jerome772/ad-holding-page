@@ -45,41 +45,44 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen px-[8vw] py-[10vh]">
+    <main
+      className="min-h-screen px-5 sm:px-14 py-16 sm:py-24"
+      style={{ background: "var(--white)" }}
+    >
       <div className="max-w-[640px] mx-auto">
         <div className="flex items-center justify-between mb-16">
           <Link
             href="/"
-            className="inline-flex items-center h-11 -mx-1 px-1 text-[var(--ink)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
+            className="inline-flex items-center h-11 -mx-1 px-1 text-[var(--navy)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm"
           >
             <Logo className="h-6 w-auto" />
           </Link>
           <Link
             href="/"
-            className="inline-flex items-center h-11 px-1 text-[0.9rem] font-medium text-[var(--ink)] no-underline hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
+            className="inline-flex items-center h-11 px-1 text-[0.9rem] font-semibold text-[var(--navy)] no-underline hover:text-[var(--terracotta)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm"
           >
             &larr; Back to home
           </Link>
         </div>
 
-        <h1 className="font-[var(--font-manrope)] font-extrabold text-[clamp(2rem,4.4vw,3rem)] leading-[1.1] mb-12">
+        <h1 className="font-[var(--font-manrope)] font-extrabold text-[clamp(2rem,4.4vw,3rem)] leading-[1.1] text-[var(--navy)] mb-12">
           Privacy Policy
         </h1>
 
         <div className="flex flex-col gap-10">
           {sections.map((section) => (
             <div key={section.heading}>
-              <h2 className="font-[var(--font-manrope)] font-bold text-[1.1rem] text-[var(--ink)] mb-2">
+              <h2 className="font-[var(--font-manrope)] font-bold text-[1.1rem] text-[var(--navy)] mb-2">
                 {section.heading}
               </h2>
-              <p className="text-[1rem] leading-[1.6] text-[var(--ink-soft)]">
+              <p className="text-[1rem] leading-[1.6] text-[var(--ink-on-white)]">
                 {section.body}
               </p>
             </div>
           ))}
         </div>
 
-        <footer className="mt-20 pt-8 border-t border-[var(--ink)]/15 text-[0.75rem] text-[var(--ink-soft)] flex gap-5 flex-wrap">
+        <footer className="mt-20 pt-8 border-t border-[var(--hairline)] text-[0.75rem] flex gap-5 flex-wrap" style={{ color: "rgba(1,1,37,0.45)" }}>
           <span>ADV Consulting Pty Ltd</span>
           <span>ABN 65 699 875 833</span>
           <span>Last updated July 2026</span>

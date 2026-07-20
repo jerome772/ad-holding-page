@@ -20,34 +20,44 @@ export default function WhatWeDo() {
   return (
     <section
       id="what"
-      className="min-h-screen flex flex-col justify-center px-[8vw] py-[8vh]"
-      style={{ background: "var(--paper)" }}
+      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px]"
+      style={{ background: "var(--white)" }}
     >
-      <div className="max-w-[60ch] mb-14">
-        <p className="text-[0.78rem] font-semibold tracking-[0.16em] uppercase text-[var(--ink-soft)] mb-5">
-          What we do
-        </p>
-        <h2 className="font-[var(--font-manrope)] font-extrabold text-[clamp(1.9rem,3.4vw,2.8rem)] leading-[1.05]">
-          Three ways we move your business forward.
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {pillars.map((p) => (
-          <div key={p.index} className="border-t-2 border-[var(--ink)] pt-6">
-            <div className="font-[var(--font-manrope)] text-[0.85rem] font-extrabold text-[var(--ink-soft)] mb-3">
-              {p.index}
-            </div>
-            <h3 className="text-[1.4rem] font-bold mb-4">{p.title}</h3>
-            <p className="text-[1rem] leading-[1.55] text-[var(--ink-soft)]">
-              {p.body}
-            </p>
-          </div>
-        ))}
-      </div>
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="lg:w-[320px] lg:flex-shrink-0">
+          <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
+            What we do
+          </p>
+          <h2 className="font-extrabold text-[24px] sm:text-[28px] lg:text-[34px] leading-[1.15] text-[var(--navy)]">
+            Three ways we move your business forward.
+          </h2>
+        </div>
 
-      <p className="font-[var(--font-manrope)] font-bold text-[1.05rem] text-center mt-14">
-        We build with AI. And we build AI.
-      </p>
+        <div className="flex-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {pillars.map((p) => (
+              <div
+                key={p.index}
+                className="border-t-[3px] border-[var(--terracotta)] pt-5"
+              >
+                <div className="text-[13px] font-extrabold text-[var(--terracotta)] mb-3">
+                  {p.index}
+                </div>
+                <h3 className="text-[20px] font-bold text-[var(--navy)] mb-3">
+                  {p.title}
+                </h3>
+                <p className="text-[14.5px] leading-[1.6] text-[var(--ink-on-white)]">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="font-bold text-[18px] text-[var(--navy)] mt-12">
+            We build with AI. And we build AI.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

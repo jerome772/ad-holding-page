@@ -4,78 +4,50 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useLenis } from "lenis/react";
 import Logo from "./Logo";
 
-const FOCUSABLE_SELECTOR =
-  'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
 const NAV_LINKS = [
-  { href: "#what", label: "What We Do" },
-  { href: "#how", label: "How We Work" },
-  { href: "#who", label: "Who We Are" },
-  { href: "#contact", label: "Let's Talk" },
+  { href: "#what", id: "what", label: "What We Do" },
+  { href: "#how", id: "how", label: "How We Work" },
+  { href: "#who", id: "who", label: "Who We Are" },
+  { href: "#contact", id: "contact", label: "Let's Talk" },
 ];
+
+const SECTION_IDS = ["hero", "what", "how", "who", "contact"];
 
 export default function Header() {
   const lenis = useLenis();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const hamburgerRef = useRef<HTMLButtonElement>(null);
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState("hero");
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const ratiosRef = useRef<Record<string, number>>({});
 
   useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 80);
-    }
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const elements = SECTION_IDS.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => Boolean(el)
+    );
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          ratiosRef.current[entry.target.id] = entry.intersectionRatio;
+        });
+        const [topId] =
+          Object.entries(ratiosRef.current).sort((a, b) => b[1] - a[1])[0] ?? [];
+        if (topId) setActiveSection(topId);
+      },
+      { threshold: [0, 0.25, 0.4, 0.5, 0.75, 1] }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    const main = document.querySelector("main");
-    if (menuOpen) {
-      main?.setAttribute("aria-hidden", "true");
-    } else {
-      main?.removeAttribute("aria-hidden");
-    }
-    return () => {
-      document.body.style.overflow = "";
-      main?.removeAttribute("aria-hidden");
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (menuOpen) {
-      closeRef.current?.focus();
-    } else {
-      hamburgerRef.current?.focus();
-    }
-  }, [menuOpen]);
-
-  useEffect(() => {
     if (!menuOpen) return;
-
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         setMenuOpen(false);
-        return;
-      }
-      if (e.key !== "Tab" || !overlayRef.current) return;
-
-      const focusable = Array.from(
-        overlayRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
-      );
-      if (focusable.length === 0) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
+        toggleRef.current?.focus();
       }
     }
     window.addEventListener("keydown", onKeyDown);
@@ -96,128 +68,94 @@ export default function Header() {
   );
 
   return (
-    <>
-      <header
-        aria-hidden={menuOpen}
-        className={`fixed top-0 left-0 right-0 z-50 h-[72px] flex items-center px-[6vw] transition-colors duration-300 ${
-          scrolled
-            ? "bg-[#e8e0d0] border-b border-[rgba(32,31,31,0.1)]"
-            : "bg-transparent border-b border-transparent"
-        }`}
-      >
-        <div className="flex items-center gap-10">
-          <a
-            href="#hero"
-            tabIndex={menuOpen ? -1 : undefined}
-            onClick={(e) => handleLinkClick(e, "#hero")}
-            className="text-[var(--ink)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
-          >
-            <Logo className="h-6 w-auto" />
-          </a>
+    <div className="fixed top-0 inset-x-0 z-50 bg-[var(--white)] border-b border-[var(--hairline)]">
+      <header className="flex items-center justify-between h-[60px] lg:h-auto px-[18px] lg:px-[56px] py-0 lg:py-5">
+        <a
+          href="#hero"
+          onClick={(e) => handleLinkClick(e, "#hero")}
+          className="text-[var(--navy)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm"
+        >
+          <Logo className="h-[18px] lg:h-6 w-auto" />
+        </a>
 
-          <nav
-            aria-label="Primary"
-            className="hidden md:flex items-center gap-8"
-          >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                tabIndex={menuOpen ? -1 : undefined}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className="py-2 text-[0.9rem] font-medium text-[var(--ink)] no-underline hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        </div>
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-9">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => handleLinkClick(e, link.href)}
+              className={`text-[14px] font-semibold no-underline transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm ${
+                activeSection === link.id
+                  ? "text-[var(--terracotta)]"
+                  : "text-[var(--ink-on-white)] hover:text-[var(--navy)]"
+              }`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
 
         <button
-          ref={hamburgerRef}
+          ref={toggleRef}
           type="button"
-          tabIndex={menuOpen ? -1 : undefined}
-          onClick={() => setMenuOpen(true)}
-          aria-label="Open menu"
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
-          aria-controls="mobile-nav-overlay"
-          className="md:hidden ml-auto flex items-center justify-center w-11 h-11 -mr-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)] rounded-sm"
+          aria-controls="mobile-nav-dropdown"
+          className="lg:hidden flex items-center justify-center w-11 h-11 -mr-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
-          >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path
-              d="M3 6h18M3 12h18M3 18h18"
-              stroke="#201f1f"
+              d="M2 5h16"
+              stroke="var(--navy)"
               strokeWidth="2"
               strokeLinecap="round"
+              className={`origin-center transition-transform duration-200 ${
+                menuOpen ? "rotate-45 translate-y-[6px]" : ""
+              }`}
+            />
+            <path
+              d="M2 15h16"
+              stroke="var(--navy)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className={`origin-center transition-transform duration-200 ${
+                menuOpen ? "-rotate-45 -translate-y-[6px]" : ""
+              }`}
             />
           </svg>
         </button>
       </header>
 
       <div
-        ref={overlayRef}
-        id="mobile-nav-overlay"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Menu"
-        aria-hidden={!menuOpen}
-        className={`fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 bg-[#201f1f] transition-transform duration-300 ease-out ${
-          menuOpen ? "translate-x-0" : "-translate-x-full pointer-events-none"
+        id="mobile-nav-dropdown"
+        className={`lg:hidden grid transition-[grid-template-rows] duration-300 ease-out ${
+          menuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <a
-          href="#hero"
-          tabIndex={menuOpen ? undefined : -1}
-          onClick={(e) => handleLinkClick(e, "#hero")}
-          className="absolute top-4 left-[6vw] text-[#e8e0d0] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e8e0d0] rounded-sm"
-        >
-          <Logo className="h-6 w-auto" />
-        </a>
-
-        <button
-          ref={closeRef}
-          type="button"
-          tabIndex={menuOpen ? undefined : -1}
-          onClick={() => setMenuOpen(false)}
-          aria-label="Close menu"
-          className="absolute top-4 right-[6vw] flex items-center justify-center w-11 h-11 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e8e0d0] rounded-sm"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
+        <div className="overflow-hidden">
+          <nav
+            aria-label="Mobile"
+            className="flex flex-col gap-[18px] px-[18px] pb-[18px]"
           >
-            <path
-              d="M5 5l14 14M19 5L5 19"
-              stroke="#e8e0d0"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-
-        <nav aria-label="Mobile" className="flex flex-col items-center gap-7">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              tabIndex={menuOpen ? undefined : -1}
-              onClick={(e) => handleLinkClick(e, link.href)}
-              className="font-[var(--font-barlow)] font-black text-[#e8e0d0] text-[34px] leading-tight no-underline text-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e8e0d0] rounded-sm"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                tabIndex={menuOpen ? undefined : -1}
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className={`text-[16px] font-semibold no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm ${
+                  activeSection === link.id
+                    ? "text-[var(--terracotta)]"
+                    : "text-[var(--navy)]"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
