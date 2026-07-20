@@ -10,21 +10,26 @@ export default function Who() {
           Who We Are
         </p>
         <p className="text-[20px] sm:text-[23px] font-bold leading-[1.4] text-[var(--navy)] mb-5">
-          I&apos;m Jerome. I&apos;ve spent 15 years helping enterprise across
-          APAC innovate.
+          ADV is a lean, specialist consulting firm helping mid-market and
+          enterprise businesses across Australia and New Zealand turn
+          complex technology challenges into real business outcomes.
         </p>
         <p className="text-[16px] leading-[1.6] text-[var(--ink-on-white)] mb-5">
-          The Ethos: The best outcomes come from real partnership, shared
-          success, built on trust.
+          We work across three areas: custom applications, integration and
+          data normalisation, and agentic AI solutions. Not as generalists.
+          As specialists who have been recognised with industry credentials
+          for enterprise innovation across APAC.
         </p>
         <p className="text-[16px] leading-[1.6] text-[var(--ink-on-white)] mb-5">
-          AI has moved faster than the traditional consulting model can
-          follow.
+          Our model is different by design: lean, experienced teams of
+          hands-on specialists with a passion for deep, continuous domain
+          mastery - embedded in your business, accountable for the outcome,
+          not the hours.
         </p>
         <p className="text-[16px] leading-[1.6] text-[var(--ink-on-white)]">
-          I&apos;ve created ADV to close that gap: lean, nimble teams of
-          hands on, experienced specialists who have a passion for deep
-          continuous domain mastery.
+          We believe the best outcomes come from real partnership, shared
+          success, and trust. That&apos;s the ethos everything else is
+          built on.
         </p>
       </div>
     </section>

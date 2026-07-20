@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Logo from "./Logo";
 
 export default function Hero() {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -118,8 +117,22 @@ export default function Hero() {
       className="min-h-dvh flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-[60px] px-5 lg:px-[56px] py-16 lg:py-0 relative overflow-hidden"
       style={{ background: "var(--navy)" }}
     >
-      <div className="absolute inset-0 flex items-center justify-center lg:static lg:order-2 lg:flex-[0.9] lg:inset-auto pointer-events-none">
-        <Logo className="w-[190%] max-w-none lg:w-[230%] text-white opacity-[0.14]" />
+      <div className="absolute inset-0 flex items-center justify-end pointer-events-none">
+        <svg
+          viewBox="64.44 64.64 304.15 135.72"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-[85%] w-auto translate-x-[18%] text-white opacity-[0.14]"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M89.45,200.36l43.19-110.63c.42-1.09,1.47-1.8,2.64-1.8h2.2c1.17,0,2.22.72,2.64,1.8l43.19,110.63h25l-48.27-123.64c-2.86-7.34-9.8-12.08-17.68-12.08h-11.97c-7.87,0-14.81,4.74-17.68,12.07l-48.27,123.64h25Z"
+          />
+          <path
+            fill="currentColor"
+            d="M324.58,64.64h-99.85v135.72h99.85c24.3,0,44.01-19.7,44.01-44v-47.71c0-24.3-19.7-44.01-44.01-44.01M324.58,87.93c11.42,0,20.72,9.3,20.72,20.72v47.71c0,11.42-9.3,20.72-20.72,20.72h-76.56v-89.15h76.56Z"
+          />
+        </svg>
       </div>
 
       <div className="hero-copy flex-1 lg:order-1 lg:flex-[1.1] relative z-10 text-left max-w-[560px] lg:max-w-none">
@@ -171,8 +184,7 @@ export default function Hero() {
           The right call: Advantage.
         </h1>
         <p className="hero-copy-item text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch]">
-          We partner for the long game - because an advantage has to be
-          earned twice.
+          Consulting for where business is heading.
         </p>
         <a
           href="#contact"
