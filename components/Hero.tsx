@@ -115,17 +115,17 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-[640px] flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-[60px] px-5 lg:px-[56px] py-16 lg:py-0 relative overflow-hidden"
+      className="min-h-dvh flex flex-col justify-center lg:flex-row lg:items-center gap-10 lg:gap-[60px] px-5 lg:px-[56px] py-16 lg:py-0 relative overflow-hidden"
       style={{ background: "var(--navy)" }}
     >
       <div className="absolute inset-0 flex items-center justify-center lg:static lg:order-2 lg:flex-[0.9] lg:inset-auto pointer-events-none">
-        <Logo className="w-[150%] max-w-none lg:w-[170%] text-white opacity-[0.14]" />
+        <Logo className="w-[190%] max-w-none lg:w-[230%] text-white opacity-[0.14]" />
       </div>
 
-      <div className="hero-copy flex-1 lg:order-1 lg:flex-[1.1] relative z-10 text-center lg:text-left max-w-[560px] lg:max-w-none mx-auto lg:mx-0">
+      <div className="hero-copy flex-1 lg:order-1 lg:flex-[1.1] relative z-10 text-left max-w-[560px] lg:max-w-none">
         <div
           ref={logoWrapRef}
-          className="w-full mb-6 mx-auto lg:mx-0"
+          className="w-full mb-6 mt-10 lg:mt-0"
           style={{ maxWidth: "min(280px, 55vw)" }}
         >
           <svg
@@ -167,10 +167,10 @@ export default function Hero() {
         <p className="hero-copy-item text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
           Human-centred. Data-first. AI-native.
         </p>
-        <h1 className="hero-copy-item font-extrabold text-[36px] lg:text-[68px] leading-[1.05] text-white mb-4 lg:mb-6 max-w-[16ch] mx-auto lg:mx-0">
+        <h1 className="hero-copy-item font-extrabold text-[36px] lg:text-[68px] leading-[1.05] text-white mb-4 lg:mb-6 max-w-[16ch]">
           The right call: Advantage.
         </h1>
-        <p className="hero-copy-item text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch] mx-auto lg:mx-0">
+        <p className="hero-copy-item text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch]">
           We partner for the long game - because an advantage has to be
           earned twice.
         </p>

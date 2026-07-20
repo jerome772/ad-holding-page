@@ -20,10 +20,10 @@ export default function WhatWeDo() {
   return (
     <section
       id="what"
-      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px]"
+      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px] flex items-center"
       style={{ background: "var(--white)" }}
     >
-      <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+      <div className="w-full flex flex-col lg:flex-row gap-10 lg:gap-16">
         <div className="lg:w-[320px] lg:flex-shrink-0">
           <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
             What we do

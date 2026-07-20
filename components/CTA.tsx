@@ -44,10 +44,10 @@ export default function CTA() {
     <>
       <section
         id="contact"
-        className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px]"
+        className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px] flex items-center"
         style={{ background: "var(--off-white)" }}
       >
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+        <div className="w-full flex flex-col lg:flex-row gap-10 lg:gap-16">
           <div className="lg:w-[420px] lg:flex-shrink-0">
             <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
               Let&apos;s talk

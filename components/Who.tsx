@@ -2,10 +2,10 @@ export default function Who() {
   return (
     <section
       id="who"
-      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px]"
+      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px] flex items-center"
       style={{ background: "var(--white)" }}
     >
-      <div className="max-w-[640px]">
+      <div className="w-full max-w-[640px]">
         <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
           Who We Are
         </p>
