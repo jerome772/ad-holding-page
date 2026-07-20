@@ -75,7 +75,7 @@ export default function Header() {
           onClick={(e) => handleLinkClick(e, "#hero")}
           className="text-[var(--navy)] no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm"
         >
-          <Logo className="h-[18px] lg:h-6 w-auto" />
+          <Logo className="h-7 lg:h-6 w-auto" />
         </a>
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-9">
@@ -110,18 +110,28 @@ export default function Header() {
               stroke="var(--navy)"
               strokeWidth="2"
               strokeLinecap="round"
-              className={`origin-center transition-transform duration-200 ${
-                menuOpen ? "rotate-45 translate-y-[6px]" : ""
-              }`}
+              style={{
+                transformBox: "stroke-box",
+                transformOrigin: "center",
+                transform: menuOpen
+                  ? "translateY(5px) rotate(45deg)"
+                  : "translateY(0) rotate(0deg)",
+                transition: "transform 200ms ease",
+              }}
             />
             <path
               d="M2 15h16"
               stroke="var(--navy)"
               strokeWidth="2"
               strokeLinecap="round"
-              className={`origin-center transition-transform duration-200 ${
-                menuOpen ? "-rotate-45 -translate-y-[6px]" : ""
-              }`}
+              style={{
+                transformBox: "stroke-box",
+                transformOrigin: "center",
+                transform: menuOpen
+                  ? "translateY(-5px) rotate(-45deg)"
+                  : "translateY(0) rotate(0deg)",
+                transition: "transform 200ms ease",
+              }}
             />
           </svg>
         </button>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import LogoVertical from "./LogoVertical";
 
 const inputClasses =
   "bg-transparent border-0 border-b border-[rgba(1,1,37,0.2)] rounded-none text-[var(--navy)] text-[15px] py-[10px] px-0 placeholder:text-[var(--ink-on-white)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--terracotta)] focus:border-[var(--terracotta)]";
@@ -146,9 +147,13 @@ export default function CTA() {
       </section>
 
       <footer
-        className="border-t border-[var(--hairline)] px-5 sm:px-14 py-8"
+        className="border-t border-[var(--hairline)] px-5 sm:px-14 py-8 flex items-center gap-4"
         style={{ background: "var(--white)" }}
       >
+        <LogoVertical
+          className="h-8 w-auto flex-shrink-0"
+          bottomColor="var(--navy)"
+        />
         <span className="text-[13px]" style={{ color: "rgba(1,1,37,0.45)" }}>
           &copy; 2026 ADV Consulting Pty Ltd. All rights reserved. &middot;{" "}
           <a

@@ -22,10 +22,6 @@ body {
   overflow-x: hidden;
 }
 
-section {
-  min-height: 100vh;
-}
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;

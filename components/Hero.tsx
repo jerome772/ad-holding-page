@@ -6,6 +6,7 @@ import Logo from "./Logo";
 
 export default function Hero() {
   const svgRef = useRef<SVGSVGElement>(null);
+  const logoWrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -41,18 +42,22 @@ export default function Hero() {
     setLetterTransform(letterA, centerA, stateA.x, stateA.sy);
     setLetterTransform(letterV, centerV, stateV.x, stateV.sy);
 
+    // Sequence: background + watermark are already visible (no animation) ->
+    // small logo fades in, then plays its letter-swap ID ->  hero copy
+    // (eyebrow/heading/subhead/CTA) follows once the logo settles.
     const tl = gsap.timeline({ delay: 0.1 });
-    tl.to(
-      stateA,
-      {
-        x: swapDistance,
-        duration: 0.54,
-        ease: "power2.inOut",
-        onUpdate: () =>
-          setLetterTransform(letterA, centerA, stateA.x, stateA.sy),
-      },
-      0
-    )
+    tl.from(logoWrapRef.current, { opacity: 0, duration: 0.3, ease: "power1.out" }, 0)
+      .to(
+        stateA,
+        {
+          x: swapDistance,
+          duration: 0.54,
+          ease: "power2.inOut",
+          onUpdate: () =>
+            setLetterTransform(letterA, centerA, stateA.x, stateA.sy),
+        },
+        0.25
+      )
       .to(
         stateV,
         {
@@ -62,7 +67,7 @@ export default function Hero() {
           onUpdate: () =>
             setLetterTransform(letterV, centerV, stateV.x, stateV.sy),
         },
-        0
+        0.25
       )
       .to(
         stateA,
@@ -73,7 +78,7 @@ export default function Hero() {
           onUpdate: () =>
             setLetterTransform(letterA, centerA, stateA.x, stateA.sy),
         },
-        0.59
+        0.84
       )
       .to(
         stateV,
@@ -84,17 +89,26 @@ export default function Hero() {
           onUpdate: () =>
             setLetterTransform(letterV, centerV, stateV.x, stateV.sy),
         },
-        0.59
+        0.84
       )
-      .from("#logo-dot", { opacity: 0, duration: 0.2 }, 0.92)
+      .from("#logo-dot", { opacity: 0, duration: 0.2 }, 1.17)
       .from(
-        ".hero-copy > *",
+        ".hero-copy-item",
         { opacity: 0, y: 16, duration: 0.3, stagger: 0.06 },
-        0.97
+        1.22
       );
+
+    // Safety net: if the tab is backgrounded/throttled during load and the
+    // timeline never gets to finish, force everything visible anyway so the
+    // CTA button (and the rest of the copy) can never get stuck invisible.
+    const failsafe = window.setTimeout(() => {
+      gsap.set(".hero-copy-item", { opacity: 1, y: 0 });
+      if (logoWrapRef.current) gsap.set(logoWrapRef.current, { opacity: 1 });
+    }, 3000);
 
     return () => {
       tl.kill();
+      window.clearTimeout(failsafe);
     };
   }, []);
 
@@ -105,18 +119,19 @@ export default function Hero() {
       style={{ background: "var(--navy)" }}
     >
       <div className="absolute inset-0 flex items-center justify-center lg:static lg:order-2 lg:flex-[0.9] lg:inset-auto pointer-events-none">
-        <Logo className="w-[85%] max-w-[440px] lg:w-full lg:max-w-none text-white opacity-[0.12]" />
+        <Logo className="w-[150%] max-w-none lg:w-[170%] text-white opacity-[0.14]" />
       </div>
 
       <div className="hero-copy flex-1 lg:order-1 lg:flex-[1.1] relative z-10 text-center lg:text-left max-w-[560px] lg:max-w-none mx-auto lg:mx-0">
         <div
+          ref={logoWrapRef}
           className="w-full mb-6 mx-auto lg:mx-0"
-          style={{ maxWidth: "min(200px, 44vw)" }}
+          style={{ maxWidth: "min(280px, 55vw)" }}
         >
           <svg
             ref={svgRef}
             id="logo-svg"
-            viewBox="0 0 582.97 264.82"
+            viewBox="64.44 64.64 478.01 135.72"
             xmlns="http://www.w3.org/2000/svg"
             className="w-full h-auto block overflow-visible"
             role="img"
@@ -149,19 +164,19 @@ export default function Hero() {
           </svg>
         </div>
 
-        <p className="text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
-          Call Advantage.
+        <p className="hero-copy-item text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
+          Human-centred. Data-first. AI-native.
         </p>
-        <h1 className="font-extrabold text-[36px] lg:text-[68px] leading-[1.05] text-white mb-4 lg:mb-6 max-w-[16ch] mx-auto lg:mx-0">
-          The right call. Advantage taken.
+        <h1 className="hero-copy-item font-extrabold text-[36px] lg:text-[68px] leading-[1.05] text-white mb-4 lg:mb-6 max-w-[16ch] mx-auto lg:mx-0">
+          The right call: Advantage.
         </h1>
-        <p className="text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch] mx-auto lg:mx-0">
-          The data underneath them isn&apos;t ready. We fix that first, then
-          build AI, applications, and everything in between.
+        <p className="hero-copy-item text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch] mx-auto lg:mx-0">
+          We partner for the long game - because an advantage has to be
+          earned twice.
         </p>
         <a
           href="#contact"
-          className="inline-block font-bold text-[16px] text-white bg-[var(--terracotta)] rounded-full px-[34px] py-[16px] no-underline transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="hero-copy-item inline-block font-bold text-[16px] text-white bg-[var(--terracotta)] rounded-full px-[34px] py-[16px] no-underline transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           Let&apos;s talk
         </a>
