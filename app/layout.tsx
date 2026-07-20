@@ -42,7 +42,7 @@ const manrope = Manrope({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const TITLE = "ADV | Call Advantage";
+const TITLE = "Call: ADV.";
 const DESCRIPTION =
   "Senior-led enterprise consulting: Applications, Integration & Data, and Agentic AI. Data-first delivery for mid-market and enterprise clients across ANZ.";
 
