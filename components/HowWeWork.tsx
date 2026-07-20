@@ -32,8 +32,7 @@ export default function HowWeWork() {
         </h2>
         <p className="text-[1.05rem] text-[#e8e0d0] opacity-60 max-w-[52ch] mx-auto">
           Senior people, embedded in your team, not managing from a distance.
-          Hands-on from strategy through production, the way advantage has
-          always worked: earned twice, not given once.
+          Hands-on from strategy to scale.
         </p>
       </div>
 

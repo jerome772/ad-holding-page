@@ -140,16 +140,15 @@ export default function Hero() {
       </div>
 
       <div className="hero-copy">
-        <h1 className="font-[var(--font-manrope)] font-extrabold text-[clamp(2.2rem,5.4vw,4.4rem)] leading-[1.05] max-w-[16ch] mx-auto mb-4">
+        <p className="text-[0.78rem] font-semibold tracking-[0.16em] uppercase text-[var(--ink-soft)] mb-4">
           Call Advantage.
-        </h1>
-        <p className="font-[var(--font-manrope)] font-bold text-[clamp(1rem,1.6vw,1.25rem)] mb-3">
-          Earned, not given.
         </p>
+        <h1 className="font-[var(--font-manrope)] font-extrabold text-[clamp(2.2rem,5.4vw,4.4rem)] leading-[1.05] max-w-[20ch] mx-auto mb-4">
+          The right call. Advantage taken.
+        </h1>
         <p className="text-[clamp(1.05rem,1.6vw,1.3rem)] text-[var(--ink-soft)] max-w-[46ch] mx-auto mb-8">
-          Most AI initiatives fail before they start, because the data
-          underneath them isn&apos;t ready. We fix that first, then build AI,
-          applications, and everything in between.
+          The data underneath them isn&apos;t ready. We fix that first, then
+          build AI, applications, and everything in between.
         </p>
         <a
           href="#contact"
