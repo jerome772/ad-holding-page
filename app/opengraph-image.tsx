@@ -47,7 +47,18 @@ export default async function Image() {
               lineHeight: 1.25,
             }}
           >
-            Human-centred. Data-first. AI-Consulting
+            Human-centred. Data-first. AI-native.
+          </div>
+          <div
+            style={{
+              fontSize: 26,
+              fontWeight: 700,
+              color: "#D0502D",
+              lineHeight: 1.4,
+              marginTop: 20,
+            }}
+          >
+            Consulting for where business is heading
           </div>
         </div>
       </div>
