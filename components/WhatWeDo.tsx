@@ -2,17 +2,17 @@ const pillars = [
   {
     index: "01",
     title: "Applications",
-    body: "Full builds and modernisation, from concept to production. React, iOS, Flutter, on SAP BTP or standalone. Wherever you're starting from, legacy replacement, greenfield, or somewhere in between.",
+    body: "User-centric design, build and modernisation, from concept to production. React, iOS, Fiori or Headless on SAP BTP or standalone. Wherever you're starting from, legacy replacement, greenfield, or somewhere in between.",
   },
   {
     index: "02",
     title: "Integration & Data",
-    body: "Your systems, pooled and normalised into a secure layer with real semantic structure, usable for reporting today, and for AI when you're ready for it.",
+    body: "Your current and future business data, pooled and normalised into a secure layer with real semantic structure. SAP Integration Suite, custom APIs, BDC, GCP, Snowflake or a combination. Usable for applications and reporting today, and AI when you're ready for it.",
   },
   {
     index: "03",
     title: "Agentic",
-    body: "Multi-agent systems that augment real decisions, not automate simple tasks. Business-value-driven, not demo-driven.",
+    body: "Design and deploy AI that adds real business value. SAP, GCP, AWS, Microsoft or the frontier model of the moment. From intelligent research, interaction and automation to agentic workforces, we help organisations move faster without sacrificing governance or control.",
   },
 ];
 
@@ -52,10 +52,6 @@ export default function WhatWeDo() {
               </div>
             ))}
           </div>
-
-          <p className="font-bold text-[18px] text-[var(--navy)] mt-12">
-            We build with AI. And we build AI.
-          </p>
         </div>
       </div>
     </section>
