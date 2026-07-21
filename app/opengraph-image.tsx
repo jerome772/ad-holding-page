@@ -47,7 +47,7 @@ export default async function Image() {
               lineHeight: 1.25,
             }}
           >
-            Human-centred. Data-first. AI-native.
+            Consulting built for the AI era.
           </div>
           <div
             style={{
@@ -58,7 +58,7 @@ export default async function Image() {
               marginTop: 20,
             }}
           >
-            Consulting for where business is heading
+            Human-centred. Data-first. AI-native.
           </div>
         </div>
       </div>

@@ -43,9 +43,11 @@ const manrope = Manrope({
 });
 
 const TITLE = "ADV Consulting · Enterprise AI & SAP BTP";
-const SOCIAL_TITLE = "Call: ADV.";
+const SOCIAL_TITLE = "The right call: Advantage.";
 const DESCRIPTION =
   "Human-centred, Data-first, AI-native consulting for where business is heading.";
+const SOCIAL_DESCRIPTION =
+  "Consulting built for the AI era. Human-centred. Data-first. AI-native.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: SOCIAL_TITLE,
-    description: DESCRIPTION,
+    description: SOCIAL_DESCRIPTION,
     url: "https://www.advhq.com.au",
     siteName: "ADV Consulting",
     locale: "en_AU",
@@ -65,7 +67,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: SOCIAL_TITLE,
-    description: DESCRIPTION,
+    description: SOCIAL_DESCRIPTION,
   },
 };
 
