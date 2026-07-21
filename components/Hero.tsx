@@ -97,12 +97,27 @@ export default function Hero() {
         1.22
       );
 
+    // Mobile Safari sometimes fails to paint the very last JS-driven style
+    // change in a sequence if nothing triggers another repaint afterwards -
+    // the element is left invisible until the next reflow (a scroll, a tap).
+    // Force the final state via plain DOM writes + an explicit reflow so the
+    // browser has no excuse not to commit the paint.
+    tl.eventCallback("onComplete", () => {
+      document.querySelectorAll<HTMLElement>(".hero-copy-item").forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+      if (logoWrapRef.current) logoWrapRef.current.style.opacity = "1";
+      void document.body.offsetHeight;
+    });
+
     // Safety net: if the tab is backgrounded/throttled during load and the
     // timeline never gets to finish, force everything visible anyway so the
     // CTA button (and the rest of the copy) can never get stuck invisible.
     const failsafe = window.setTimeout(() => {
       gsap.set(".hero-copy-item", { opacity: 1, y: 0 });
       if (logoWrapRef.current) gsap.set(logoWrapRef.current, { opacity: 1 });
+      void document.body.offsetHeight;
     }, 3000);
 
     return () => {
@@ -177,18 +192,18 @@ export default function Hero() {
           </svg>
         </div>
 
-        <p className="hero-copy-item text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
+        <p className="hero-copy-item will-change-[opacity,transform] text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
           Human-centred. Data-first. AI-native.
         </p>
-        <h1 className="hero-copy-item font-extrabold text-[36px] lg:text-[68px] leading-[1.05] text-white mb-4 lg:mb-6 max-w-[16ch]">
+        <h1 className="hero-copy-item will-change-[opacity,transform] font-extrabold text-[36px] lg:text-[68px] leading-[1.05] text-white mb-4 lg:mb-6 max-w-[16ch]">
           The right call: Advantage.
         </h1>
-        <p className="hero-copy-item text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch]">
+        <p className="hero-copy-item will-change-[opacity,transform] text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch]">
           Consulting for where business is heading.
         </p>
         <a
           href="#contact"
-          className="hero-copy-item inline-block font-bold text-[16px] text-white bg-[var(--terracotta)] rounded-full px-[34px] py-[16px] no-underline transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="hero-copy-item will-change-[opacity,transform] inline-block font-bold text-[16px] text-white bg-[var(--terracotta)] rounded-full px-[34px] py-[16px] no-underline transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           Let&apos;s talk
         </a>
