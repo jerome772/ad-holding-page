@@ -14,7 +14,7 @@ const jsonLd = {
       "@type": "Organization",
       name: "ADV Consulting Pty Ltd",
       url: "https://www.advhq.com.au",
-      logo: "https://www.advhq.com.au/icon.svg",
+      logo: "https://www.advhq.com.au/android-chrome-512x512.png",
       sameAs: [],
       description:
         "Senior-led enterprise consulting: Applications, Integration & Data, and Agentic AI. Data-first delivery for mid-market and enterprise clients across ANZ.",
@@ -55,6 +55,27 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.advhq.com.au"),
   alternates: {
     canonical: "https://www.advhq.com.au",
+  },
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     title: SOCIAL_TITLE,
