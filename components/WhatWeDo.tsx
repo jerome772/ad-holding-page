@@ -11,8 +11,8 @@ const pillars = [
   },
   {
     index: "03",
-    title: "Agentic",
-    body: "Design and deploy AI that adds real business value. SAP, GCP, AWS, Microsoft or the frontier model of the moment. From intelligent research, interaction and automation to agentic workforces, we help organisations move faster without sacrificing governance or control.",
+    title: "Agentic Systems",
+    body: "Design and deploy AI that adds real business value. On SAP, GCP, AWS, Microsoft or the frontier model of the moment. From intelligent research, interaction and automation to agentic workforces, we help organisations move faster without sacrificing governance or control.",
   },
 ];
 
