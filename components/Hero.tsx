@@ -199,7 +199,7 @@ export default function Hero() {
           The right call: Advantage.
         </h1>
         <p className="hero-copy-item will-change-[opacity,transform] text-[16px] lg:text-[18px] leading-[1.6] text-[var(--ink-on-navy)] mb-8 max-w-[46ch]">
-          Consulting for where business is heading.
+          Consulting built for the AI era.
         </p>
         <a
           href="#contact"
