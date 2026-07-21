@@ -40,9 +40,6 @@ export default function WhatWeDo() {
                 key={p.index}
                 className="border-t-[3px] border-[var(--terracotta)] pt-5"
               >
-                <div className="text-[13px] font-extrabold text-[var(--terracotta)] mb-3">
-                  {p.index}
-                </div>
                 <h3 className="text-[20px] font-bold text-[var(--navy)] mb-3">
                   {p.title}
                 </h3>
