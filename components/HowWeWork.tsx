@@ -2,17 +2,17 @@ const STAGES = [
   {
     number: "01",
     name: "Ground",
-    body: "Ground the work before building it. Business case, requirements, technical constraints - captured as a living document every decision refers back to.",
+    body: "Ground the work before building it. Business case, requirements, semantics, technical constraints - captured as a living document that grounds every decision, and evolves with each one.",
   },
   {
     number: "02",
     name: "Create",
-    body: "Build in tight cycles with real feedback. UX, architecture, and delivery running in parallel. AI-accelerated, senior-led, shipped to production.",
+    body: "Create in tight cycles with real feedback. Designs, specifications, architecture, code and delivery running in parallel. AI-accelerated, senior-led, shipped to production.",
   },
   {
     number: "03",
     name: "Scale",
-    body: "Embed, expand, and compound. The goal is value that grows - not a handover document and a goodbye.",
+    body: "Embed, adopt, and compound. Shipping to production is the first step - the goal is value that grows.",
   },
 ];
 
@@ -32,8 +32,10 @@ export default function HowWeWork() {
             Ground. Create. Scale.
           </h2>
           <p className="text-[14.5px] sm:text-[15px] leading-[1.6] text-[var(--ink-on-white)]">
-            Senior people, embedded in your team, not managing from a
-            distance. Hands-on from strategy to scale.
+            A living framework, not a straight line - human-centred design
+            and senior engineering judgement, building a shared
+            understanding that evolves as we go. Senior people, embedded in
+            your team, hands-on from Ground through Scale.
           </p>
         </div>
 
