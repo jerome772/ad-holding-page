@@ -42,10 +42,10 @@ const manrope = Manrope({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-const TITLE = "ADV Consulting · Enterprise AI & SAP BTP";
+const TITLE = "ADV | Consulting Built for the AI Era";
 const SOCIAL_TITLE = "The right call: Advantage.";
 const DESCRIPTION =
-  "Human-centred, Data-first, AI-native consulting for where business is heading.";
+  "Senior, embedded consulting for ANZ mid-market and enterprise organisations. Applications, Integration & Data, and Agentic AI.";
 const SOCIAL_DESCRIPTION =
   "Consulting built for the AI era. Human-centred. Data-first. AI-native.";
 
