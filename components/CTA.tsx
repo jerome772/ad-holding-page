@@ -58,7 +58,8 @@ export default function CTA() {
               let&apos;s talk.
             </h2>
             <p className="text-[20px] sm:text-[23px] font-bold leading-[1.4] text-[var(--navy)] mt-4">
-              Skip the form. Call Jerome direct:{" "}
+              Skip the form. Call Jerome direct:
+              <br />
               <a
                 href="tel:+61412532654"
                 className="underline hover:text-[var(--terracotta)] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--navy)] rounded-sm"

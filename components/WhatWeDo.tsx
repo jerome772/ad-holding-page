@@ -7,7 +7,7 @@ const pillars = [
   {
     index: "02",
     title: "Integration & Data",
-    body: "Your current and future business data, pooled and normalised into a secure layer with real semantic structure. SAP Business AI Platform (Integration Suite, Business Data Cloud), custom APIs, GCP, Snowflake or a combination. Usable for applications and reporting today, and AI when you're ready for it.",
+    body: "Your current and future business data, pooled and normalised into a secure layer with real semantic structure. SAP's Business AI Platform (BTP, Business Data Cloud, Integration Suite), custom APIs, GCP, Snowflake or a combination. Usable for applications and reporting today, and AI when you're ready for it.",
   },
   {
     index: "03",
