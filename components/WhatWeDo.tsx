@@ -2,12 +2,12 @@ const pillars = [
   {
     index: "01",
     title: "Applications",
-    body: "User-centric design, build and modernisation, from concept to production. React, iOS, Fiori or Headless on SAP BTP or standalone. Wherever you're starting from, legacy replacement, greenfield, or somewhere in between.",
+    body: "User-centric design, build and modernisation, from concept to production. React, iOS, Fiori or Headless on SAP BAIP or standalone. Wherever you're starting from, legacy replacement, greenfield, or somewhere in between.",
   },
   {
     index: "02",
     title: "Integration & Data",
-    body: "Your current and future business data, pooled and normalised into a secure layer with real semantic structure. SAP Integration Suite, custom APIs, BDC, GCP, Snowflake or a combination. Usable for applications and reporting today, and AI when you're ready for it.",
+    body: "Your current and future business data, pooled and normalised into a secure layer with real semantic structure. SAP Business AI Platform (Integration Suite, Business Data Cloud), custom APIs, GCP, Snowflake or a combination. Usable for applications and reporting today, and AI when you're ready for it.",
   },
   {
     index: "03",
