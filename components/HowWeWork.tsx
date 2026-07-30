@@ -1,3 +1,14 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+}
+
 const STAGES = [
   {
     number: "01",
@@ -16,10 +27,142 @@ const STAGES = [
   },
 ];
 
+const DIAGRAM_SVG_CLASS =
+  "w-full h-auto lg:w-auto lg:h-[55vh] lg:max-w-full block mx-auto";
+
 export default function HowWeWork() {
+  const diagramWrapRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [svgMarkup, setSvgMarkup] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/how-we-work-diagram.svg")
+      .then((res) => res.text())
+      .then((text) => {
+        if (cancelled) return;
+        const withClass = text.replace(
+          "<svg ",
+          `<svg class="${DIAGRAM_SVG_CLASS}" `
+        );
+        setSvgMarkup(withClass);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!svgMarkup || !diagramWrapRef.current) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const root = diagramWrapRef.current;
+    const nodeGround = root.querySelectorAll("#circle-ground, #label-ground");
+    const nodeCreate = root.querySelectorAll("#circle-create, #label-create");
+    const nodeScale = root.querySelectorAll("#circle-scale, #label-scale");
+    const lineGC = root.querySelectorAll(".line-ground-create");
+    const lineCS = root.querySelectorAll(".line-create-scale");
+    const returnPath = root.querySelectorAll(".path-return");
+    const descBlocks = root.querySelectorAll(
+      "#desc-ground, #desc-create, #desc-scale"
+    );
+
+    if (
+      !nodeGround.length ||
+      !nodeCreate.length ||
+      !nodeScale.length ||
+      !lineGC.length ||
+      !lineCS.length ||
+      !returnPath.length ||
+      !descBlocks.length
+    ) {
+      return;
+    }
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 75%",
+        once: true,
+      },
+    });
+
+    tl.from(
+      nodeGround,
+      {
+        opacity: 0,
+        scale: 0.4,
+        transformOrigin: "center",
+        duration: 0.45,
+        ease: "back.out(2)",
+      },
+      0
+    )
+      .from(
+        nodeCreate,
+        {
+          opacity: 0,
+          scale: 0.4,
+          transformOrigin: "center",
+          duration: 0.45,
+          ease: "back.out(2)",
+        },
+        0.18
+      )
+      .from(
+        nodeScale,
+        {
+          opacity: 0,
+          scale: 0.4,
+          transformOrigin: "center",
+          duration: 0.45,
+          ease: "back.out(2)",
+        },
+        0.36
+      )
+      .fromTo(
+        lineGC,
+        { drawSVG: "0%" },
+        { drawSVG: "100%", duration: 0.35, ease: "power1.inOut" },
+        0.65
+      )
+      .fromTo(
+        lineCS,
+        { drawSVG: "0%" },
+        { drawSVG: "100%", duration: 0.35, ease: "power1.inOut" },
+        0.95
+      )
+      .fromTo(
+        returnPath,
+        { drawSVG: "0%" },
+        {
+          drawSVG: "100%",
+          duration: 0.6,
+          ease: "power1.inOut",
+          stagger: 0.02,
+        },
+        1.25
+      )
+      .from(
+        descBlocks,
+        { opacity: 0, y: 4, duration: 0.4, ease: "power1.out" },
+        1.95
+      );
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+    };
+  }, [svgMarkup]);
+
   return (
     <section
       id="how"
+      ref={sectionRef}
       className="border-t border-[var(--hairline)] py-12 sm:py-[72px] lg:py-[110px] flex flex-col justify-center"
       style={{ background: "var(--off-white)" }}
     >
@@ -36,10 +179,11 @@ export default function HowWeWork() {
         className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-10 lg:mt-14 py-10 sm:py-16"
         style={{ background: "var(--navy)" }}
       >
-        <img
-          src="/how-we-work-diagram.svg"
-          alt="Ground, Create, Scale: a continuous cycle - Ground (problem, goal, requirements), Create (design, build, iterate), Scale (embed, adopt, compound), looping back to Ground."
-          className="w-full max-w-[960px] h-auto block mx-auto"
+        <div
+          ref={diagramWrapRef}
+          role="img"
+          aria-label="Ground, Create, Scale: a continuous cycle - Ground (problem, goal, requirements), Create (design, build, iterate), Scale (embed, adopt, compound), looping back to Ground."
+          dangerouslySetInnerHTML={svgMarkup ? { __html: svgMarkup } : undefined}
         />
       </div>
 
