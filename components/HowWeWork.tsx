@@ -39,7 +39,7 @@ export default function HowWeWork() {
         <img
           src="/how-we-work-diagram.svg"
           alt="Ground, Create, Scale: a continuous cycle - Ground (problem, goal, requirements), Create (design, build, iterate), Scale (embed, adopt, compound), looping back to Ground."
-          className="w-full h-auto block"
+          className="w-full max-w-[960px] h-auto block mx-auto"
         />
       </div>
 
