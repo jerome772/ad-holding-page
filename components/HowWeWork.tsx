@@ -2,17 +2,17 @@ const STAGES = [
   {
     number: "01",
     name: "Ground",
-    body: "Ground the work before building it. Business case, requirements, semantics, technical constraints - captured as a living document that grounds every decision, and evolves with each one.",
+    body: "Ground what we're solving: the problem, the goal, the business case, the requirements. Living semantic context, always open, that grounds every decision and evolves with each one.",
   },
   {
     number: "02",
     name: "Create",
-    body: "Create in tight cycles with real feedback. Designs, specifications, architecture, code and delivery running in parallel. AI-accelerated, senior-led, shipped to production.",
+    body: "Design, build and iterate in tight cycles with real feedback. Specifications, architecture, code and delivery running in parallel. AI-accelerated, senior-led, shipped to production.",
   },
   {
     number: "03",
     name: "Scale",
-    body: "Embed, adopt, and compound. Shipping to production is the first step - the goal is value that grows.",
+    body: "Embed, adopt, and compound. Shipping to production is the first step - the goal is value that compounds.",
   },
 ];
 
@@ -20,22 +20,35 @@ export default function HowWeWork() {
   return (
     <section
       id="how"
-      className="border-t border-[var(--hairline)] px-5 sm:px-14 py-12 sm:py-[72px] lg:py-[110px] flex items-center"
+      className="border-t border-[var(--hairline)] py-12 sm:py-[72px] lg:py-[110px] flex flex-col justify-center"
       style={{ background: "var(--off-white)" }}
     >
-      <div className="w-full flex flex-col lg:flex-row gap-10 lg:gap-16">
+      <div className="px-5 sm:px-14">
+        <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
+          How we work
+        </p>
+        <h2 className="font-extrabold text-[24px] sm:text-[28px] lg:text-[34px] leading-[1.15] text-[var(--navy)]">
+          Ground. Create. Scale.
+        </h2>
+      </div>
+
+      <div
+        className="w-screen relative left-1/2 right-1/2 -mx-[50vw] mt-10 lg:mt-14 py-10 sm:py-16"
+        style={{ background: "var(--navy)" }}
+      >
+        <img
+          src="/how-we-work-diagram.svg"
+          alt="Ground, Create, Scale: a continuous cycle - Ground (problem, goal, requirements), Create (design, build, iterate), Scale (embed, adopt, compound), looping back to Ground."
+          className="w-full h-auto block"
+        />
+      </div>
+
+      <div className="px-5 sm:px-14 mt-10 lg:mt-16 flex flex-col lg:flex-row gap-10 lg:gap-16">
         <div className="lg:w-[320px] lg:flex-shrink-0">
-          <p className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] uppercase text-[var(--terracotta)] mb-4">
-            How we work
-          </p>
-          <h2 className="font-extrabold text-[24px] sm:text-[28px] lg:text-[34px] leading-[1.15] text-[var(--navy)] mb-4">
-            Ground. Create. Scale.
-          </h2>
           <p className="text-[14.5px] sm:text-[15px] leading-[1.6] text-[var(--ink-on-white)]">
-            A living framework, not a straight line - human-centred design
-            and senior engineering judgement, building a shared
-            understanding that evolves as we go. Senior people, embedded in
-            your team, hands-on from Ground through Scale.
+            A non-linear, living framework - human-centred design and senior
+            engineering, building an always open ecosystem. Senior people,
+            embedded in your team, hands-on from Ground through Scale.
           </p>
         </div>
 
