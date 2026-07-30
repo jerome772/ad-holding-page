@@ -28,7 +28,7 @@ const STAGES = [
 ];
 
 const DIAGRAM_SVG_CLASS =
-  "w-full h-auto lg:w-auto lg:h-[55vh] lg:max-w-full block mx-auto";
+  "w-full h-auto lg:w-auto lg:h-[45.65vh] lg:max-w-full block mx-auto";
 
 export default function HowWeWork() {
   const diagramWrapRef = useRef<HTMLDivElement>(null);
