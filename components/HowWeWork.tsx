@@ -76,16 +76,26 @@ export default function HowWeWork() {
     // sequence matching the true visual route - Scale down the right arc,
     // across the bottom, up the left arc into Ground - rather than their
     // arbitrary order in the source file.
+    //
+    // DrawSVGPlugin reveals a path by taking over its stroke-dasharray /
+    // stroke-dashoffset directly, which would flatten the arcs' and middle
+    // segment's authored dash pattern into one solid growing dash for the
+    // duration of the tween. To keep the dashes visible throughout the
+    // reveal (dash by dash, not solid-then-snap), the 3 dashed elements are
+    // masked in the SVG by an invisible same-shaped "reveal" path (see
+    // #reveal-arc-right / #reveal-middle-dashed / #reveal-arc-left in
+    // how-we-work-diagram.svg) - we animate the reveal path's draw progress
+    // instead, and the dashed element's own dasharray is never touched.
     const stubScaleEdge = root.querySelector('line[x1="309.39"]');
-    const arcRight = root.querySelector('path[d^="M263.51,174.95"]');
+    const revealArcRight = root.querySelector("#reveal-arc-right");
     const stubRightOfMiddle = root.querySelector('line[x1="257.69"]');
     const chevronRight = root.querySelector('polyline[points^="250.73"]');
     const stubMiddleRight = root.querySelector('line[x1="235.4"]');
-    const middleDashed = root.querySelector('line[x1="177.27"]');
+    const revealMiddleDashed = root.querySelector("#reveal-middle-dashed");
     const stubMiddleLeft = root.querySelector('line[x1="171.71"]');
     const chevronLeft = root.querySelector('polyline[points^="163.87"]');
     const stubLeftOfMiddle = root.querySelector('line[x1="146.55"]');
-    const arcLeft = root.querySelector('path[d^="M97.43,114.86"]');
+    const revealArcLeft = root.querySelector("#reveal-arc-left");
     const stubGroundEdge = root.querySelector('line[x1="103.21"]');
 
     if (
@@ -96,36 +106,18 @@ export default function HowWeWork() {
       !lineCS.length ||
       !descBlocks.length ||
       !stubScaleEdge ||
-      !arcRight ||
+      !revealArcRight ||
       !stubRightOfMiddle ||
       !chevronRight ||
       !stubMiddleRight ||
-      !middleDashed ||
+      !revealMiddleDashed ||
       !stubMiddleLeft ||
       !chevronLeft ||
       !stubLeftOfMiddle ||
-      !arcLeft ||
+      !revealArcLeft ||
       !stubGroundEdge
     ) {
       return;
-    }
-
-    // DrawSVGPlugin animates a reveal by taking over stroke-dasharray /
-    // stroke-dashoffset itself - at "100%" it sets one long dash spanning
-    // the whole path with a near-zero gap, which reads as a solid line.
-    // That silently replaces the arcs' and middle segment's authored dash
-    // pattern (3.9/3.86/3.63) with DrawSVG's own, so we capture the
-    // original values now (before DrawSVG touches anything) and restore
-    // them once each element's reveal finishes.
-    const originalDasharrays = new Map<Element, string>();
-    for (const el of [arcRight, arcLeft, middleDashed]) {
-      originalDasharrays.set(el, getComputedStyle(el).strokeDasharray);
-    }
-    function restoreDasharray(els: Element[]) {
-      for (const el of els) {
-        const value = originalDasharrays.get(el);
-        if (value) gsap.set(el, { strokeDasharray: value });
-      }
     }
 
     const tl = gsap.timeline({
@@ -188,7 +180,7 @@ export default function HowWeWork() {
       // runs top-to-bottom) - drawing them "forward" would visually flow
       // away from Scale and away from Ground instead of toward them.
       .fromTo(
-        [stubScaleEdge, arcRight],
+        [stubScaleEdge, revealArcRight],
         { drawSVG: "100% 100%" },
         { drawSVG: "0% 100%", duration: 0.25, ease: "power1.inOut" },
         1.25
@@ -200,7 +192,7 @@ export default function HowWeWork() {
         1.45
       )
       .fromTo(
-        middleDashed,
+        revealMiddleDashed,
         { drawSVG: "100% 100%" },
         { drawSVG: "0% 100%", duration: 0.2, ease: "power1.inOut" },
         1.55
@@ -212,15 +204,9 @@ export default function HowWeWork() {
         1.7
       )
       .fromTo(
-        [arcLeft, stubGroundEdge],
+        [revealArcLeft, stubGroundEdge],
         { drawSVG: "100% 100%" },
-        {
-          drawSVG: "0% 100%",
-          duration: 0.25,
-          ease: "power1.inOut",
-          onComplete: () =>
-            restoreDasharray([arcRight, arcLeft, middleDashed]),
-        },
+        { drawSVG: "0% 100%", duration: 0.25, ease: "power1.inOut" },
         1.8
       )
       .from(
