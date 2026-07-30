@@ -66,10 +66,27 @@ export default function HowWeWork() {
     const nodeScale = root.querySelectorAll("#circle-scale, #label-scale");
     const lineGC = root.querySelectorAll(".line-ground-create");
     const lineCS = root.querySelectorAll(".line-create-scale");
-    const returnPath = root.querySelectorAll(".path-return");
     const descBlocks = root.querySelectorAll(
       "#desc-ground, #desc-create, #desc-scale"
     );
+
+    // The dashed return path is 11 separate elements in the source SVG, not
+    // one continuous path (2 arc paths, 6 short solid stub lines, 1 dashed
+    // straight segment, 2 arrow chevrons). We animate them as an ordered
+    // sequence matching the true visual route - Scale down the right arc,
+    // across the bottom, up the left arc into Ground - rather than their
+    // arbitrary order in the source file.
+    const stubScaleEdge = root.querySelector('line[x1="309.39"]');
+    const arcRight = root.querySelector('path[d^="M263.51,174.95"]');
+    const stubRightOfMiddle = root.querySelector('line[x1="257.69"]');
+    const chevronRight = root.querySelector('polyline[points^="250.73"]');
+    const stubMiddleRight = root.querySelector('line[x1="235.4"]');
+    const middleDashed = root.querySelector('line[x1="177.27"]');
+    const stubMiddleLeft = root.querySelector('line[x1="171.71"]');
+    const chevronLeft = root.querySelector('polyline[points^="163.87"]');
+    const stubLeftOfMiddle = root.querySelector('line[x1="146.55"]');
+    const arcLeft = root.querySelector('path[d^="M97.43,114.86"]');
+    const stubGroundEdge = root.querySelector('line[x1="103.21"]');
 
     if (
       !nodeGround.length ||
@@ -77,10 +94,38 @@ export default function HowWeWork() {
       !nodeScale.length ||
       !lineGC.length ||
       !lineCS.length ||
-      !returnPath.length ||
-      !descBlocks.length
+      !descBlocks.length ||
+      !stubScaleEdge ||
+      !arcRight ||
+      !stubRightOfMiddle ||
+      !chevronRight ||
+      !stubMiddleRight ||
+      !middleDashed ||
+      !stubMiddleLeft ||
+      !chevronLeft ||
+      !stubLeftOfMiddle ||
+      !arcLeft ||
+      !stubGroundEdge
     ) {
       return;
+    }
+
+    // DrawSVGPlugin animates a reveal by taking over stroke-dasharray /
+    // stroke-dashoffset itself - at "100%" it sets one long dash spanning
+    // the whole path with a near-zero gap, which reads as a solid line.
+    // That silently replaces the arcs' and middle segment's authored dash
+    // pattern (3.9/3.86/3.63) with DrawSVG's own, so we capture the
+    // original values now (before DrawSVG touches anything) and restore
+    // them once each element's reveal finishes.
+    const originalDasharrays = new Map<Element, string>();
+    for (const el of [arcRight, arcLeft, middleDashed]) {
+      originalDasharrays.set(el, getComputedStyle(el).strokeDasharray);
+    }
+    function restoreDasharray(els: Element[]) {
+      for (const el of els) {
+        const value = originalDasharrays.get(el);
+        if (value) gsap.set(el, { strokeDasharray: value });
+      }
     }
 
     const tl = gsap.timeline({
@@ -136,21 +181,52 @@ export default function HowWeWork() {
         { drawSVG: "100%", duration: 0.35, ease: "power1.inOut" },
         0.95
       )
+      // Return path, Scale -> Ground, in true visual order. arcRight and
+      // arcLeft are drawn in reverse (from: "100% 100%" to: "0% 100%")
+      // because their authored path direction runs the opposite way to the
+      // flow we want (arcRight's path data runs bottom-to-top; arcLeft's
+      // runs top-to-bottom) - drawing them "forward" would visually flow
+      // away from Scale and away from Ground instead of toward them.
       .fromTo(
-        returnPath,
-        { drawSVG: "0%" },
-        {
-          drawSVG: "100%",
-          duration: 0.6,
-          ease: "power1.inOut",
-          stagger: 0.02,
-        },
+        [stubScaleEdge, arcRight],
+        { drawSVG: "100% 100%" },
+        { drawSVG: "0% 100%", duration: 0.25, ease: "power1.inOut" },
         1.25
+      )
+      .fromTo(
+        [stubRightOfMiddle, chevronRight, stubMiddleRight],
+        { drawSVG: "0%" },
+        { drawSVG: "100%", duration: 0.15, ease: "power1.inOut" },
+        1.45
+      )
+      .fromTo(
+        middleDashed,
+        { drawSVG: "100% 100%" },
+        { drawSVG: "0% 100%", duration: 0.2, ease: "power1.inOut" },
+        1.55
+      )
+      .fromTo(
+        [stubMiddleLeft, chevronLeft, stubLeftOfMiddle],
+        { drawSVG: "0%" },
+        { drawSVG: "100%", duration: 0.15, ease: "power1.inOut" },
+        1.7
+      )
+      .fromTo(
+        [arcLeft, stubGroundEdge],
+        { drawSVG: "100% 100%" },
+        {
+          drawSVG: "0% 100%",
+          duration: 0.25,
+          ease: "power1.inOut",
+          onComplete: () =>
+            restoreDasharray([arcRight, arcLeft, middleDashed]),
+        },
+        1.8
       )
       .from(
         descBlocks,
         { opacity: 0, y: 4, duration: 0.4, ease: "power1.out" },
-        1.95
+        2.15
       );
 
     return () => {
