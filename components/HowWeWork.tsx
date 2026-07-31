@@ -127,6 +127,7 @@ export default function HowWeWork() {
         once: true,
       },
     });
+    tl.timeScale(1 / 1.13);
 
     tl.from(
       nodeGround,
